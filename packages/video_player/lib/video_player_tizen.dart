@@ -118,6 +118,9 @@ class VideoPlayerTizen extends VideoPlayerPlatform {
   }
 
   @override
+  Future<int?> getAbsolutePosition(int textureId) async => null;
+
+  @override
   Stream<VideoEvent> videoEventsFor(int textureId) {
     return _eventChannelFor(textureId)
         .receiveBroadcastStream()

@@ -18,6 +18,13 @@ dependencies:
     sdk: flutter
   video_player_platform_interface: ^5.1.2
 
+dependency_overrides:
+  video_player_platform_interface: # 5.1.1
+    git:
+      url: https://github.com/tvip/flutter-plugins.git
+      ref: 'version-2.4.0'
+      path: packages/video_player/video_player_platform_interface
+
 dev_dependencies:
   pigeon: ^6.0.1
 
