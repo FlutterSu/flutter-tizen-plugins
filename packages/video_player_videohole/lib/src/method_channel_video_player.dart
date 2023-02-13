@@ -99,6 +99,9 @@ class MethodChannelVideoPlayer extends VideoPlayerPlatform {
   }
 
   @override
+  Future<int?> getAbsolutePosition(int textureId) async => null;
+
+  @override
   Stream<VideoEvent> videoEventsFor(int playerId) {
     return _eventChannelFor(playerId)
         .receiveBroadcastStream()

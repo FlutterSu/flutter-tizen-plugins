@@ -94,6 +94,10 @@ abstract class VideoPlayerPlatform extends PlatformInterface {
     throw UnimplementedError('getPosition() has not been implemented.');
   }
 
+  Future<int?> getAbsolutePosition(int textureId) {
+    throw UnimplementedError('getAbsolutePosition() has not been implemented.');
+  }
+
   /// Returns a widget displaying the video with a given playerId.
   Widget buildView(int playerId) {
     throw UnimplementedError('buildView() has not been implemented.');
