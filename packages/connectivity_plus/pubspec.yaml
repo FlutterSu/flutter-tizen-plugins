@@ -16,7 +16,7 @@ flutter:
         fileName: connectivity_plus_tizen_plugin.h
 
 dependencies:
-  connectivity_plus_platform_interface: ^1.2.4
+  connectivity_plus_platform_interface: ^2.0.1
   flutter:
     sdk: flutter
 

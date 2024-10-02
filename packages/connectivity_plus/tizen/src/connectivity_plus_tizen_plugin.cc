@@ -27,20 +27,24 @@ typedef flutter::StreamHandler<flutter::EncodableValue> FlStreamHandler;
 typedef flutter::StreamHandlerError<flutter::EncodableValue>
     FlStreamHandlerError;
 
-std::string ConnectionTypeToString(ConnectionType type) {
+flutter::EncodableList ConnectionTypeToVectorString(ConnectionType type) {
+  flutter::EncodableList list;
+
   switch (type) {
     case ConnectionType::kEthernet:
-      return "ethernet";
+      list.push_back(flutter::EncodableValue("ethernet"));
     case ConnectionType::kWiFi:
-      return "wifi";
+       list.push_back(flutter::EncodableValue("wifi"));
     case ConnectionType::kMobile:
-      return "mobile";
+       list.push_back(flutter::EncodableValue("mobile"));
     case ConnectionType::kBluetooth:
-      return "bluetooth";
+       list.push_back(flutter::EncodableValue("bluetooth"));
     case ConnectionType::kNone:
     default:
-      return "none";
+       list.push_back(flutter::EncodableValue("none"));
   }
+
+  return list;
 }
 
 class ConnectivityStreamHandler : public FlStreamHandler {
@@ -52,7 +56,7 @@ class ConnectivityStreamHandler : public FlStreamHandler {
 
     ConnectionTypeCallback callback = [this](ConnectionType type) -> void {
       if (type != ConnectionType::kError) {
-        events_->Success(flutter::EncodableValue(ConnectionTypeToString(type)));
+        events_->Success(flutter::EncodableValue(ConnectionTypeToVectorString(type)));
       } else {
         events_->Error(std::to_string(connection_.GetLastError()),
                        connection_.GetLastErrorString());
@@ -117,7 +121,7 @@ class ConnectivityPlusTizenPlugin : public flutter::Plugin {
       Connection connection;
       ConnectionType type = connection.GetType();
       if (type != ConnectionType::kError) {
-        result->Success(flutter::EncodableValue(ConnectionTypeToString(type)));
+        result->Success(flutter::EncodableValue(ConnectionTypeToVectorString(type)));
       } else {
         result->Error(std::to_string(connection.GetLastError()),
                       connection.GetLastErrorString());
