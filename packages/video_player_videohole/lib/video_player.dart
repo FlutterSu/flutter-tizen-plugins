@@ -678,7 +678,11 @@ class VideoPlayerController extends ValueNotifier<VideoPlayerValue> {
       await _applyPlaybackSpeed();
     } else {
       _timer?.cancel();
-      await _videoPlayerPlatform.pause(_playerId);
+      try {
+        await _videoPlayerPlatform.pause(_playerId);
+      } catch (e) {
+        // Ignore the error
+      }
     }
   }
 
@@ -701,7 +705,11 @@ class VideoPlayerController extends ValueNotifier<VideoPlayerValue> {
       return;
     }
 
-    await _videoPlayerPlatform.setPlaybackSpeed(_playerId, value.playbackSpeed);
+    try {
+      await _videoPlayerPlatform.setPlaybackSpeed(_playerId, value.playbackSpeed);
+    } catch (e) {
+      // Ignore the error
+    }
   }
 
   /// The position in the current video.
