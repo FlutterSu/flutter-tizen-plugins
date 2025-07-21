@@ -47,6 +47,7 @@ class VideoPlayerTizenPlugin : public flutter::Plugin,
   ErrorOr<bool> SetDeactivate(const PlayerMessage &msg) override;
   ErrorOr<bool> SetActivate(const PlayerMessage &msg) override;
   ErrorOr<PositionMessage> Position(const PlayerMessage &msg) override;
+  ErrorOr<SizeMessage> Size(const PlayerMessage &msg) override;
   void SeekTo(
       const PositionMessage &msg,
       std::function<void(std::optional<FlutterError> reply)> result) override;
@@ -274,6 +275,19 @@ ErrorOr<PositionMessage> VideoPlayerTizenPlugin::Position(
     return FlutterError("Invalid argument", "Player not found");
   }
   PositionMessage result(msg.player_id(), player->GetPosition());
+  return result;
+}
+
+ErrorOr<SizeMessage> VideoPlayerTizenPlugin::Size(
+    const PlayerMessage &msg) {
+  VideoPlayer *player = FindPlayerById(msg.player_id());
+  if (!player) {
+    return FlutterError("Invalid argument", "Player not found");
+  }
+
+  auto size_pair = player->GetSize();
+
+  SizeMessage result(msg.player_id(), size_pair.first, size_pair.second);
   return result;
 }
 

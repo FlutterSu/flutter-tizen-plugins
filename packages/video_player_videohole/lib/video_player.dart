@@ -634,8 +634,10 @@ class VideoPlayerController extends ValueNotifier<VideoPlayerValue> {
         return;
       }
       final Duration? newPosition = await position;
+      final Size? newSize = await size;
+
       if (newPosition != null) {
-        _updatePosition(newPosition);
+        _updatePosition(newPosition, newSize);
       }
     });
   }
@@ -720,6 +722,13 @@ class VideoPlayerController extends ValueNotifier<VideoPlayerValue> {
     return _videoPlayerPlatform.getPosition(_playerId);
   }
 
+  Future<Size?> get size async {
+    if (_isDisposed || _timer == null) {
+      return null;
+    }
+    return _videoPlayerPlatform.getSize(_playerId);
+  }
+
   /// Sets the video's current timestamp to be at [moment]. The next
   /// time the video is played it will resume from the given [moment].
   ///
@@ -735,7 +744,7 @@ class VideoPlayerController extends ValueNotifier<VideoPlayerValue> {
       position = Duration.zero;
     }
     await _videoPlayerPlatform.seekTo(_playerId, position);
-    _updatePosition(position);
+    _updatePosition(position, value.size);
   }
 
   /// The video tracks in the current video.
@@ -852,11 +861,12 @@ class VideoPlayerController extends ValueNotifier<VideoPlayerValue> {
     return Caption.none;
   }
 
-  void _updatePosition(Duration position) {
+  void _updatePosition(Duration position, Size? size) {
     value = value.copyWith(
       position: position,
       caption: _getCaptionAt(position),
       isCompleted: position == value.duration.end,
+      size: size,
     );
   }
 

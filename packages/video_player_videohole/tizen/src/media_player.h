@@ -35,6 +35,7 @@ class MediaPlayer : public VideoPlayer {
   bool SetPlaybackSpeed(double speed) override;
   bool SeekTo(int64_t position, SeekCompletedCallback callback) override;
   int64_t GetPosition() override;
+  std::pair<int64_t, int64_t> GetSize() override;
   std::pair<int64_t, int64_t> GetDuration() override;
   void GetVideoSize(int32_t *width, int32_t *height) override;
   bool IsReady() override;

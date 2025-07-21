@@ -59,6 +59,13 @@ class PositionMessage {
   int position;
 }
 
+class SizeMessage {
+  SizeMessage(this.playerId, this.width, this.height);
+  int playerId;
+  int width;
+  int height;
+}
+
 class CreateMessage {
   CreateMessage();
   String? asset;
@@ -104,6 +111,7 @@ abstract class VideoPlayerVideoholeApi {
   TrackMessage track(TrackTypeMessage msg);
   bool setTrackSelection(SelectedTracksMessage msg);
   PositionMessage position(PlayerMessage msg);
+  SizeMessage size(PlayerMessage msg);
   @async
   void seekTo(PositionMessage msg);
   void pause(PlayerMessage msg);

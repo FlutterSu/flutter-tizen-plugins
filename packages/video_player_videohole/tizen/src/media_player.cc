@@ -323,6 +323,17 @@ std::pair<int64_t, int64_t> MediaPlayer::GetDuration() {
   }
 }
 
+std::pair<int64_t, int64_t> MediaPlayer::GetSize() {
+  int w = 0, h = 0;
+  int ret = player_get_video_size(player_, &w, &h);
+  if (ret != PLAYER_ERROR_NONE) {
+    LOG_ERROR("[MediaPlayer] player_get_video_size failed: %s.",
+              get_error_message(ret));
+  }
+
+  return std::make_pair(w, h);
+}
+
 void MediaPlayer::GetVideoSize(int32_t *width, int32_t *height) {
   int w = 0, h = 0;
   int ret = player_get_video_size(player_, &w, &h);

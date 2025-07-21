@@ -12,16 +12,18 @@
 #include <optional>
 #include <string>
 
+
+
 // Generated class from Pigeon.
 
 class FlutterError {
  public:
-  explicit FlutterError(const std::string& code) : code_(code) {}
+  explicit FlutterError(const std::string& code)
+    : code_(code) {}
   explicit FlutterError(const std::string& code, const std::string& message)
-      : code_(code), message_(message) {}
-  explicit FlutterError(const std::string& code, const std::string& message,
-                        const flutter::EncodableValue& details)
-      : code_(code), message_(message), details_(details) {}
+    : code_(code), message_(message) {}
+  explicit FlutterError(const std::string& code, const std::string& message, const flutter::EncodableValue& details)
+    : code_(code), message_(message), details_(details) {}
 
   const std::string& code() const { return code_; }
   const std::string& message() const { return message_; }
@@ -33,8 +35,7 @@ class FlutterError {
   flutter::EncodableValue details_;
 };
 
-template <class T>
-class ErrorOr {
+template<class T> class ErrorOr {
  public:
   ErrorOr(const T& rhs) : v_(rhs) {}
   ErrorOr(const T&& rhs) : v_(std::move(rhs)) {}
@@ -53,6 +54,7 @@ class ErrorOr {
   std::variant<T, FlutterError> v_;
 };
 
+
 // Generated class from Pigeon that represents data sent in messages.
 class PlayerMessage {
  public:
@@ -62,25 +64,31 @@ class PlayerMessage {
   int64_t player_id() const;
   void set_player_id(int64_t value_arg);
 
+
  private:
   static PlayerMessage FromEncodableList(const flutter::EncodableList& list);
   flutter::EncodableList ToEncodableList() const;
   friend class VideoPlayerVideoholeApi;
   friend class VideoPlayerVideoholeApiCodecSerializer;
   int64_t player_id_;
+
 };
+
 
 // Generated class from Pigeon that represents data sent in messages.
 class LoopingMessage {
  public:
   // Constructs an object setting all fields.
-  explicit LoopingMessage(int64_t player_id, bool is_looping);
+  explicit LoopingMessage(
+    int64_t player_id,
+    bool is_looping);
 
   int64_t player_id() const;
   void set_player_id(int64_t value_arg);
 
   bool is_looping() const;
   void set_is_looping(bool value_arg);
+
 
  private:
   static LoopingMessage FromEncodableList(const flutter::EncodableList& list);
@@ -89,19 +97,24 @@ class LoopingMessage {
   friend class VideoPlayerVideoholeApiCodecSerializer;
   int64_t player_id_;
   bool is_looping_;
+
 };
+
 
 // Generated class from Pigeon that represents data sent in messages.
 class VolumeMessage {
  public:
   // Constructs an object setting all fields.
-  explicit VolumeMessage(int64_t player_id, double volume);
+  explicit VolumeMessage(
+    int64_t player_id,
+    double volume);
 
   int64_t player_id() const;
   void set_player_id(int64_t value_arg);
 
   double volume() const;
   void set_volume(double value_arg);
+
 
  private:
   static VolumeMessage FromEncodableList(const flutter::EncodableList& list);
@@ -110,13 +123,17 @@ class VolumeMessage {
   friend class VideoPlayerVideoholeApiCodecSerializer;
   int64_t player_id_;
   double volume_;
+
 };
+
 
 // Generated class from Pigeon that represents data sent in messages.
 class PlaybackSpeedMessage {
  public:
   // Constructs an object setting all fields.
-  explicit PlaybackSpeedMessage(int64_t player_id, double speed);
+  explicit PlaybackSpeedMessage(
+    int64_t player_id,
+    double speed);
 
   int64_t player_id() const;
   void set_player_id(int64_t value_arg);
@@ -124,28 +141,32 @@ class PlaybackSpeedMessage {
   double speed() const;
   void set_speed(double value_arg);
 
+
  private:
-  static PlaybackSpeedMessage FromEncodableList(
-      const flutter::EncodableList& list);
+  static PlaybackSpeedMessage FromEncodableList(const flutter::EncodableList& list);
   flutter::EncodableList ToEncodableList() const;
   friend class VideoPlayerVideoholeApi;
   friend class VideoPlayerVideoholeApiCodecSerializer;
   int64_t player_id_;
   double speed_;
+
 };
+
 
 // Generated class from Pigeon that represents data sent in messages.
 class TrackMessage {
  public:
   // Constructs an object setting all fields.
-  explicit TrackMessage(int64_t player_id,
-                        const flutter::EncodableList& tracks);
+  explicit TrackMessage(
+    int64_t player_id,
+    const flutter::EncodableList& tracks);
 
   int64_t player_id() const;
   void set_player_id(int64_t value_arg);
 
   const flutter::EncodableList& tracks() const;
   void set_tracks(const flutter::EncodableList& value_arg);
+
 
  private:
   static TrackMessage FromEncodableList(const flutter::EncodableList& list);
@@ -154,19 +175,24 @@ class TrackMessage {
   friend class VideoPlayerVideoholeApiCodecSerializer;
   int64_t player_id_;
   flutter::EncodableList tracks_;
+
 };
+
 
 // Generated class from Pigeon that represents data sent in messages.
 class TrackTypeMessage {
  public:
   // Constructs an object setting all fields.
-  explicit TrackTypeMessage(int64_t player_id, const std::string& track_type);
+  explicit TrackTypeMessage(
+    int64_t player_id,
+    const std::string& track_type);
 
   int64_t player_id() const;
   void set_player_id(int64_t value_arg);
 
   const std::string& track_type() const;
   void set_track_type(std::string_view value_arg);
+
 
  private:
   static TrackTypeMessage FromEncodableList(const flutter::EncodableList& list);
@@ -175,14 +201,18 @@ class TrackTypeMessage {
   friend class VideoPlayerVideoholeApiCodecSerializer;
   int64_t player_id_;
   std::string track_type_;
+
 };
+
 
 // Generated class from Pigeon that represents data sent in messages.
 class SelectedTracksMessage {
  public:
   // Constructs an object setting all fields.
-  explicit SelectedTracksMessage(int64_t player_id, int64_t track_id,
-                                 const std::string& track_type);
+  explicit SelectedTracksMessage(
+    int64_t player_id,
+    int64_t track_id,
+    const std::string& track_type);
 
   int64_t player_id() const;
   void set_player_id(int64_t value_arg);
@@ -193,28 +223,33 @@ class SelectedTracksMessage {
   const std::string& track_type() const;
   void set_track_type(std::string_view value_arg);
 
+
  private:
-  static SelectedTracksMessage FromEncodableList(
-      const flutter::EncodableList& list);
+  static SelectedTracksMessage FromEncodableList(const flutter::EncodableList& list);
   flutter::EncodableList ToEncodableList() const;
   friend class VideoPlayerVideoholeApi;
   friend class VideoPlayerVideoholeApiCodecSerializer;
   int64_t player_id_;
   int64_t track_id_;
   std::string track_type_;
+
 };
+
 
 // Generated class from Pigeon that represents data sent in messages.
 class PositionMessage {
  public:
   // Constructs an object setting all fields.
-  explicit PositionMessage(int64_t player_id, int64_t position);
+  explicit PositionMessage(
+    int64_t player_id,
+    int64_t position);
 
   int64_t player_id() const;
   void set_player_id(int64_t value_arg);
 
   int64_t position() const;
   void set_position(int64_t value_arg);
+
 
  private:
   static PositionMessage FromEncodableList(const flutter::EncodableList& list);
@@ -223,7 +258,40 @@ class PositionMessage {
   friend class VideoPlayerVideoholeApiCodecSerializer;
   int64_t player_id_;
   int64_t position_;
+
 };
+
+
+// Generated class from Pigeon that represents data sent in messages.
+class SizeMessage {
+ public:
+  // Constructs an object setting all fields.
+  explicit SizeMessage(
+    int64_t player_id,
+    int64_t width,
+    int64_t height);
+
+  int64_t player_id() const;
+  void set_player_id(int64_t value_arg);
+
+  int64_t width() const;
+  void set_width(int64_t value_arg);
+
+  int64_t height() const;
+  void set_height(int64_t value_arg);
+
+
+ private:
+  static SizeMessage FromEncodableList(const flutter::EncodableList& list);
+  flutter::EncodableList ToEncodableList() const;
+  friend class VideoPlayerVideoholeApi;
+  friend class VideoPlayerVideoholeApiCodecSerializer;
+  int64_t player_id_;
+  int64_t width_;
+  int64_t height_;
+
+};
+
 
 // Generated class from Pigeon that represents data sent in messages.
 class CreateMessage {
@@ -232,12 +300,14 @@ class CreateMessage {
   CreateMessage();
 
   // Constructs an object setting all fields.
-  explicit CreateMessage(const std::string* asset, const std::string* uri,
-                         const std::string* package_name,
-                         const std::string* format_hint,
-                         const flutter::EncodableMap* http_headers,
-                         const flutter::EncodableMap* drm_configs,
-                         const flutter::EncodableMap* player_options);
+  explicit CreateMessage(
+    const std::string* asset,
+    const std::string* uri,
+    const std::string* package_name,
+    const std::string* format_hint,
+    const flutter::EncodableMap* http_headers,
+    const flutter::EncodableMap* drm_configs,
+    const flutter::EncodableMap* player_options);
 
   const std::string* asset() const;
   void set_asset(const std::string_view* value_arg);
@@ -267,6 +337,7 @@ class CreateMessage {
   void set_player_options(const flutter::EncodableMap* value_arg);
   void set_player_options(const flutter::EncodableMap& value_arg);
 
+
  private:
   static CreateMessage FromEncodableList(const flutter::EncodableList& list);
   flutter::EncodableList ToEncodableList() const;
@@ -279,7 +350,9 @@ class CreateMessage {
   std::optional<flutter::EncodableMap> http_headers_;
   std::optional<flutter::EncodableMap> drm_configs_;
   std::optional<flutter::EncodableMap> player_options_;
+
 };
+
 
 // Generated class from Pigeon that represents data sent in messages.
 class MixWithOthersMessage {
@@ -290,21 +363,27 @@ class MixWithOthersMessage {
   bool mix_with_others() const;
   void set_mix_with_others(bool value_arg);
 
+
  private:
-  static MixWithOthersMessage FromEncodableList(
-      const flutter::EncodableList& list);
+  static MixWithOthersMessage FromEncodableList(const flutter::EncodableList& list);
   flutter::EncodableList ToEncodableList() const;
   friend class VideoPlayerVideoholeApi;
   friend class VideoPlayerVideoholeApiCodecSerializer;
   bool mix_with_others_;
+
 };
+
 
 // Generated class from Pigeon that represents data sent in messages.
 class GeometryMessage {
  public:
   // Constructs an object setting all fields.
-  explicit GeometryMessage(int64_t player_id, int64_t x, int64_t y,
-                           int64_t width, int64_t height);
+  explicit GeometryMessage(
+    int64_t player_id,
+    int64_t x,
+    int64_t y,
+    int64_t width,
+    int64_t height);
 
   int64_t player_id() const;
   void set_player_id(int64_t value_arg);
@@ -321,6 +400,7 @@ class GeometryMessage {
   int64_t height() const;
   void set_height(int64_t value_arg);
 
+
  private:
   static GeometryMessage FromEncodableList(const flutter::EncodableList& list);
   flutter::EncodableList ToEncodableList() const;
@@ -331,7 +411,9 @@ class GeometryMessage {
   int64_t y_;
   int64_t width_;
   int64_t height_;
+
 };
+
 
 // Generated class from Pigeon that represents data sent in messages.
 class DurationMessage {
@@ -340,8 +422,9 @@ class DurationMessage {
   explicit DurationMessage(int64_t player_id);
 
   // Constructs an object setting all fields.
-  explicit DurationMessage(int64_t player_id,
-                           const flutter::EncodableList* duration_range);
+  explicit DurationMessage(
+    int64_t player_id,
+    const flutter::EncodableList* duration_range);
 
   int64_t player_id() const;
   void set_player_id(int64_t value_arg);
@@ -350,6 +433,7 @@ class DurationMessage {
   void set_duration_range(const flutter::EncodableList* value_arg);
   void set_duration_range(const flutter::EncodableList& value_arg);
 
+
  private:
   static DurationMessage FromEncodableList(const flutter::EncodableList& list);
   flutter::EncodableList ToEncodableList() const;
@@ -357,10 +441,10 @@ class DurationMessage {
   friend class VideoPlayerVideoholeApiCodecSerializer;
   int64_t player_id_;
   std::optional<flutter::EncodableList> duration_range_;
+
 };
 
-class VideoPlayerVideoholeApiCodecSerializer
-    : public flutter::StandardCodecSerializer {
+class VideoPlayerVideoholeApiCodecSerializer : public flutter::StandardCodecSerializer {
  public:
   VideoPlayerVideoholeApiCodecSerializer();
   inline static VideoPlayerVideoholeApiCodecSerializer& GetInstance() {
@@ -368,16 +452,18 @@ class VideoPlayerVideoholeApiCodecSerializer
     return sInstance;
   }
 
-  void WriteValue(const flutter::EncodableValue& value,
-                  flutter::ByteStreamWriter* stream) const override;
+  void WriteValue(
+    const flutter::EncodableValue& value,
+    flutter::ByteStreamWriter* stream) const override;
 
  protected:
   flutter::EncodableValue ReadValueOfType(
-      uint8_t type, flutter::ByteStreamReader* stream) const override;
+    uint8_t type,
+    flutter::ByteStreamReader* stream) const override;
+
 };
 
-// Generated interface from Pigeon that represents a handler of messages from
-// Flutter.
+// Generated interface from Pigeon that represents a handler of messages from Flutter.
 class VideoPlayerVideoholeApi {
  public:
   VideoPlayerVideoholeApi(const VideoPlayerVideoholeApi&) = delete;
@@ -388,38 +474,38 @@ class VideoPlayerVideoholeApi {
   virtual std::optional<FlutterError> Dispose(const PlayerMessage& msg) = 0;
   virtual std::optional<FlutterError> SetLooping(const LoopingMessage& msg) = 0;
   virtual std::optional<FlutterError> SetVolume(const VolumeMessage& msg) = 0;
-  virtual std::optional<FlutterError> SetPlaybackSpeed(
-      const PlaybackSpeedMessage& msg) = 0;
+  virtual std::optional<FlutterError> SetPlaybackSpeed(const PlaybackSpeedMessage& msg) = 0;
   virtual std::optional<FlutterError> Play(const PlayerMessage& msg) = 0;
   virtual ErrorOr<bool> SetDeactivate(const PlayerMessage& msg) = 0;
   virtual ErrorOr<bool> SetActivate(const PlayerMessage& msg) = 0;
   virtual ErrorOr<TrackMessage> Track(const TrackTypeMessage& msg) = 0;
   virtual ErrorOr<bool> SetTrackSelection(const SelectedTracksMessage& msg) = 0;
   virtual ErrorOr<PositionMessage> Position(const PlayerMessage& msg) = 0;
+  virtual ErrorOr<SizeMessage> Size(const PlayerMessage& msg) = 0;
   virtual void SeekTo(
-      const PositionMessage& msg,
-      std::function<void(std::optional<FlutterError> reply)> result) = 0;
+    const PositionMessage& msg,
+    std::function<void(std::optional<FlutterError> reply)> result) = 0;
   virtual std::optional<FlutterError> Pause(const PlayerMessage& msg) = 0;
-  virtual std::optional<FlutterError> SetMixWithOthers(
-      const MixWithOthersMessage& msg) = 0;
-  virtual std::optional<FlutterError> SetDisplayGeometry(
-      const GeometryMessage& msg) = 0;
+  virtual std::optional<FlutterError> SetMixWithOthers(const MixWithOthersMessage& msg) = 0;
+  virtual std::optional<FlutterError> SetDisplayGeometry(const GeometryMessage& msg) = 0;
   virtual ErrorOr<DurationMessage> Duration(const PlayerMessage& msg) = 0;
   virtual std::optional<FlutterError> Suspend(int64_t player_id) = 0;
-  virtual std::optional<FlutterError> Restore(int64_t player_id,
-                                              const CreateMessage* msg,
-                                              int64_t resume_time) = 0;
+  virtual std::optional<FlutterError> Restore(
+    int64_t player_id,
+    const CreateMessage* msg,
+    int64_t resume_time) = 0;
 
   // The codec used by VideoPlayerVideoholeApi.
   static const flutter::StandardMessageCodec& GetCodec();
-  // Sets up an instance of `VideoPlayerVideoholeApi` to handle messages through
-  // the `binary_messenger`.
-  static void SetUp(flutter::BinaryMessenger* binary_messenger,
-                    VideoPlayerVideoholeApi* api);
+  // Sets up an instance of `VideoPlayerVideoholeApi` to handle messages through the `binary_messenger`.
+  static void SetUp(
+    flutter::BinaryMessenger* binary_messenger,
+    VideoPlayerVideoholeApi* api);
   static flutter::EncodableValue WrapError(std::string_view error_message);
   static flutter::EncodableValue WrapError(const FlutterError& error);
 
  protected:
   VideoPlayerVideoholeApi() = default;
+
 };
 #endif  // PIGEON_MESSAGES_H_

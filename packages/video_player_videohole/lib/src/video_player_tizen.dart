@@ -199,6 +199,22 @@ class VideoPlayerTizen extends VideoPlayerPlatform {
   }
 
   @override
+  Future<Size?> getSize(int playerId) async {
+    final SizeMessage response = await _api.size(
+      PlayerMessage(playerId: playerId),
+    );
+
+    final int width = response.width;
+    final int height = response.height;
+
+    if (width == 0 || height == 0) {
+      return null; // Size is not available
+    }
+
+    return Size(width.toDouble(), height.toDouble());
+  }
+
+  @override
   Stream<VideoEvent> videoEventsFor(int playerId) {
     return _eventChannelFor(playerId).receiveBroadcastStream().map((
       dynamic event,
